@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState } from "react"
 import { useApp } from "@/context/AppContext"
@@ -31,7 +31,7 @@ import {
 import { AlertCircle, Download, Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react"
 
 const MONTHS = [
-  "Janeiro", "Fevereiro", "MarÃ§o", "Abril", "Maio", "Junho",
+  "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
   "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
 ]
 
@@ -52,9 +52,9 @@ export default function IRPage() {
   return (
     <div className="p-4 lg:p-6 space-y-4 lg:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Calculadora de IR</h1>
-        <p className="text-gray-400 text-sm">
-          Renda VariÃ¡vel Â· Forex (Ganho de Capital) Â· Mesa ProprietÃ¡ria (CarnÃª-LeÃ£o)
+        <h1 className="text-xl lg:text-2xl font-bold text-white">Calculadora de IR</h1>
+        <p className="text-gray-400 text-xs lg:text-sm">
+          Renda Variável · Forex (Ganho de Capital) · Mesa Proprietária (Carnê-Leão)
         </p>
       </div>
 
@@ -75,36 +75,36 @@ export default function IRPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <SummaryCard label="IR Total no Ano" value={formatBRL(totalAllTax)} color="red" />
-        <SummaryCard label="IR Renda VariÃ¡vel" value={formatBRL(totalRVTax)} color="amber" />
+        <SummaryCard label="IR Renda Variável" value={formatBRL(totalRVTax)} color="amber" />
         <SummaryCard label="IR Forex" value={formatBRL(totalFxTax)} color="amber" />
         <SummaryCard label="IR Mesa (a pagar)" value={formatBRL(totalMesaTax)} color="amber" />
       </div>
 
       <Tabs defaultValue="rv">
         <TabsList className="bg-gray-800 border border-gray-700">
-          <TabsTrigger value="rv" className="data-[state=active]:bg-emerald-600 text-gray-300">
-            Renda VariÃ¡vel
+          <TabsTrigger value="rv" className="data-[state=active]:bg-emerald-600 text-gray-300 text-xs sm:text-sm">
+            Renda Variável
           </TabsTrigger>
-          <TabsTrigger value="forex" className="data-[state=active]:bg-blue-600 text-gray-300">
-            Forex (OTC/Spot)
+          <TabsTrigger value="forex" className="data-[state=active]:bg-blue-600 text-gray-300 text-xs sm:text-sm">
+            Forex
           </TabsTrigger>
-          <TabsTrigger value="mesa" className="data-[state=active]:bg-purple-600 text-gray-300">
-            Mesa ProprietÃ¡ria
+          <TabsTrigger value="mesa" className="data-[state=active]:bg-purple-600 text-gray-300 text-xs sm:text-sm">
+            Mesa Prop.
           </TabsTrigger>
         </TabsList>
 
-        {/* â”€â”€â”€ ABA: RENDA VARIÃVEL â”€â”€â”€ */}
+        {/* ── RENDA VARIÁVEL ── */}
         <TabsContent value="rv" className="space-y-3 mt-4">
           <InfoBox color="blue">
-            <b>Renda VariÃ¡vel (aÃ§Ãµes, futuros, FIIs, ETFs, cripto, opÃ§Ãµes):</b> Day Trade 20% s/ lucro lÃ­quido mensal â€¢
-            Swing Trade 15% s/ lucro acima de R$ 20.000/mÃªs â€¢ Perdas compensam lucros futuros na mesma modalidade â€¢
-            DARF cÃ³digo 6015 â€¢ Vence Ãºltimo dia Ãºtil do mÃªs seguinte.
+            <b>Renda Variável (ações, futuros, FIIs, ETFs, cripto, opções):</b> Day Trade 20% s/ lucro
+            líquido mensal · Swing Trade 15% s/ lucro acima de R$ 20.000/mês · Perdas compensam lucros
+            futuros na mesma modalidade · DARF código 6015 · Vence último dia útil do mês seguinte.
           </InfoBox>
           <Card className="bg-gray-800/50 border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-sm text-gray-300">ApuraÃ§Ã£o Mensal â€” {selectedYear}</CardTitle>
+            <CardHeader className="pb-2 pt-4">
+              <CardTitle className="text-sm text-gray-300">Apuração Mensal — {selectedYear}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {rvRecords.map((r) => (
@@ -114,20 +114,20 @@ export default function IRPage() {
           </Card>
         </TabsContent>
 
-        {/* â”€â”€â”€ ABA: FOREX â”€â”€â”€ */}
+        {/* ── FOREX ── */}
         <TabsContent value="forex" className="space-y-3 mt-4">
           <InfoBox color="blue">
-            <b>Forex OTC/Spot (cÃ¢mbio fora de bolsa):</b> Tributado como Ganho de Capital com alÃ­quotas
-            progressivas â€” 15% (atÃ© R$ 5M) Â· 17,5% (R$ 5Mâ€“10M) Â· 20% (R$ 10Mâ€“30M) Â· 22,5% (acima de R$ 30M) â€¢
-            Perdas compensam ganhos futuros â€¢ DARF cÃ³digo 4600 â€¢ Vence Ãºltimo dia Ãºtil do mÃªs seguinte.
+            <b>Forex OTC/Spot (câmbio fora de bolsa):</b> Ganho de Capital com alíquotas progressivas —
+            15% (até R$ 5M) · 17,5% (R$ 5M–10M) · 20% (R$ 10M–30M) · 22,5% (acima de R$ 30M) ·
+            Perdas compensam ganhos futuros · DARF código 4600.
             <br />
             <span className="text-yellow-300 text-xs">
-              âš  Contratos futuros de cÃ¢mbio negociados na B3 seguem as regras de Renda VariÃ¡vel (aba anterior).
+              ⚠ Contratos futuros de câmbio na B3 seguem as regras de Renda Variável (aba anterior).
             </span>
           </InfoBox>
           <Card className="bg-gray-800/50 border-gray-700">
-            <CardHeader>
-              <CardTitle className="text-sm text-gray-300">ApuraÃ§Ã£o Mensal Forex â€” {selectedYear}</CardTitle>
+            <CardHeader className="pb-2 pt-4">
+              <CardTitle className="text-sm text-gray-300">Apuração Mensal Forex — {selectedYear}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {fxRecords.map((r) => (
@@ -137,16 +137,16 @@ export default function IRPage() {
           </Card>
         </TabsContent>
 
-        {/* â”€â”€â”€ ABA: MESA PROPRIETÃRIA â”€â”€â”€ */}
+        {/* ── MESA PROPRIETÁRIA ── */}
         <TabsContent value="mesa" className="space-y-3 mt-4">
           <InfoBox color="purple">
-            <b>Mesa ProprietÃ¡ria (Capital Alheio):</b> O repasse de lucros do desk ao trader Ã© tributado como
-            rendimento de pessoa fÃ­sica pela <b>Tabela Progressiva Mensal (CarnÃª-LeÃ£o)</b> â€” DARF cÃ³digo 0190 â€¢
-            Caso a empresa jÃ¡ retenha IR na fonte, informe o valor retido para calcular apenas o saldo a pagar â€¢
-            AlÃ­quotas: isento atÃ© R$ 2.824 Â· 7,5% Â· 15% Â· 22,5% Â· 27,5% (tabela 2024).
+            <b>Mesa Proprietária (Capital Alheio):</b> Repasse de lucros do desk ao trader é tributado
+            como rendimento de PF pela <b>Tabela Progressiva Mensal (Carnê-Leão)</b> — DARF código 0190 ·
+            Informe o IR retido na fonte para calcular apenas o saldo a pagar · Alíquotas: isento até
+            R$ 2.824 · 7,5% · 15% · 22,5% · 27,5% (tabela 2024).
             <br />
             <span className="text-yellow-300 text-xs">
-              âš  Se vocÃª opera com capital <b>prÃ³prio</b> alocado via mesa (sem repasse de lucros), use a aba Renda VariÃ¡vel.
+              ⚠ Opera com capital <b>próprio</b> alocado via mesa? Use a aba Renda Variável.
             </span>
           </InfoBox>
           <MesaSection
@@ -160,14 +160,15 @@ export default function IRPage() {
       </Tabs>
 
       <InfoBox color="gray">
-        <b>Aviso Legal:</b> Esta calculadora Ã© informativa e nÃ£o substitui orientaÃ§Ã£o de contador habilitado.
-        As alÃ­quotas do carnÃª-leÃ£o e os limites de isenÃ§Ã£o sÃ£o atualizados anualmente pela Receita Federal.
+        <b>Aviso Legal:</b> Esta calculadora é informativa e não substitui orientação de contador
+        habilitado. As alíquotas do carnê-leão e os limites de isenção são atualizados anualmente
+        pela Receita Federal.
       </InfoBox>
     </div>
   )
 }
 
-// â”€â”€â”€ RV ROW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── RV ROW ────────────────────────────────────────────────────────────────────
 function RVRow({ record, onExport }: { record: MonthlyTaxRecord; onExport: () => void }) {
   const [expanded, setExpanded] = useState(false)
   const hasActivity =
@@ -177,17 +178,17 @@ function RVRow({ record, onExport }: { record: MonthlyTaxRecord; onExport: () =>
   return (
     <div className="rounded-lg border border-gray-700/50 overflow-hidden">
       <div
-        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-700/30 transition-colors"
+        className="flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-700/30 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
-        <span className="text-white font-medium w-24 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
-        <div className="flex-1 flex items-center gap-4 text-xs">
-          <span className="text-gray-400">
+        <span className="text-white font-medium w-20 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
+        <div className="flex-1 flex items-center gap-3 text-xs min-w-0">
+          <span className="text-gray-400 hidden sm:block">
             DT: <span className={record.dayTradeProfits - record.dayTradeLosses >= 0 ? "text-emerald-400" : "text-red-400"}>
               {formatBRL(record.dayTradeProfits - record.dayTradeLosses)}
             </span>
           </span>
-          <span className="text-gray-400">
+          <span className="text-gray-400 hidden sm:block">
             SW: <span className={record.swingTradeProfits - record.swingTradeLosses >= 0 ? "text-emerald-400" : "text-red-400"}>
               {formatBRL(record.swingTradeProfits - record.swingTradeLosses)}
             </span>
@@ -195,27 +196,27 @@ function RVRow({ record, onExport }: { record: MonthlyTaxRecord; onExport: () =>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {record.totalTaxDue > 0 ? (
-            <Badge className="bg-red-500/20 text-red-400 border-red-500/50">IR: {formatBRL(record.totalTaxDue)}</Badge>
+            <Badge className="bg-red-500/20 text-red-400 border-red-500/50 text-xs">IR: {formatBRL(record.totalTaxDue)}</Badge>
           ) : hasActivity ? (
-            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50">Sem IR</Badge>
+            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50 text-xs">Sem IR</Badge>
           ) : (
-            <Badge variant="outline" className="text-gray-600 border-gray-700">Sem ops.</Badge>
+            <Badge variant="outline" className="text-gray-600 border-gray-700 text-xs">Sem ops.</Badge>
           )}
           {record.totalTaxDue > 0 && (
             <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); onExport() }}
-              className="h-7 text-xs border-gray-600 text-gray-300">
-              <Download className="w-3 h-3 mr-1" />DARF 6015
+              className="h-6 text-xs border-gray-600 text-gray-300 px-2">
+              <Download className="w-3 h-3 mr-1" />6015
             </Button>
           )}
           {expanded ? <ChevronUp className="w-4 h-4 text-gray-600" /> : <ChevronDown className="w-4 h-4 text-gray-600" />}
         </div>
       </div>
       {expanded && hasActivity && (
-        <div className="px-4 pb-4 border-t border-gray-700/50 pt-3 bg-gray-900/30">
-          <div className="grid grid-cols-2 gap-6">
-            <TaxSection title="Day Trade â€” 20%" profits={record.dayTradeProfits} losses={record.dayTradeLosses}
+        <div className="px-3 pb-3 border-t border-gray-700/50 pt-3 bg-gray-900/30">
+          <div className="grid grid-cols-2 gap-4">
+            <TaxSection title="Day Trade — 20%" profits={record.dayTradeProfits} losses={record.dayTradeLosses}
               taxBase={record.dayTradeTaxBase} taxDue={record.dayTaxDue} carryover={record.dayTradeLossCarryover} />
-            <TaxSection title="Swing Trade â€” 15%" profits={record.swingTradeProfits} losses={record.swingTradeLosses}
+            <TaxSection title="Swing Trade — 15%" profits={record.swingTradeProfits} losses={record.swingTradeLosses}
               taxBase={record.swingTradeTaxBase} taxDue={record.swingTaxDue} carryover={record.swingTradeLossCarryover}
               exemption={20000} />
           </div>
@@ -225,7 +226,7 @@ function RVRow({ record, onExport }: { record: MonthlyTaxRecord; onExport: () =>
   )
 }
 
-// â”€â”€â”€ FOREX ROW â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── FOREX ROW ─────────────────────────────────────────────────────────────────
 function ForexRow({ record, onExport }: { record: MonthlyForexRecord; onExport: () => void }) {
   const [expanded, setExpanded] = useState(false)
   const hasActivity = record.profits > 0 || record.losses > 0
@@ -233,60 +234,51 @@ function ForexRow({ record, onExport }: { record: MonthlyForexRecord; onExport: 
   return (
     <div className="rounded-lg border border-gray-700/50 overflow-hidden">
       <div
-        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-700/30 transition-colors"
+        className="flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-700/30 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
-        <span className="text-white font-medium w-24 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
-        <div className="flex-1 flex items-center gap-4 text-xs">
-          <span className="text-gray-400">
-            Lucros: <span className="text-emerald-400">{formatBRL(record.profits)}</span>
-          </span>
-          <span className="text-gray-400">
-            Perdas: <span className="text-red-400">{formatBRL(record.losses)}</span>
-          </span>
-          <span className="text-gray-400">
-            LÃ­quido: <span className={record.profits - record.losses >= 0 ? "text-emerald-400" : "text-red-400"}>
+        <span className="text-white font-medium w-20 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
+        <div className="flex-1 flex items-center gap-3 text-xs min-w-0">
+          <span className="text-gray-400 hidden sm:block">
+            Líquido: <span className={record.profits - record.losses >= 0 ? "text-emerald-400" : "text-red-400"}>
               {formatBRL(record.profits - record.losses)}
             </span>
           </span>
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {record.taxDue > 0 ? (
-            <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50">
+            <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/50 text-xs">
               IR: {formatBRL(record.taxDue)} ({(record.effectiveRate * 100).toFixed(1)}%)
             </Badge>
           ) : hasActivity ? (
-            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50">Sem IR</Badge>
+            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50 text-xs">Sem IR</Badge>
           ) : (
-            <Badge variant="outline" className="text-gray-600 border-gray-700">Sem ops.</Badge>
+            <Badge variant="outline" className="text-gray-600 border-gray-700 text-xs">Sem ops.</Badge>
           )}
           {record.taxDue > 0 && (
             <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); onExport() }}
-              className="h-7 text-xs border-gray-600 text-gray-300">
-              <Download className="w-3 h-3 mr-1" />DARF 4600
+              className="h-6 text-xs border-gray-600 text-gray-300 px-2">
+              <Download className="w-3 h-3 mr-1" />4600
             </Button>
           )}
           {expanded ? <ChevronUp className="w-4 h-4 text-gray-600" /> : <ChevronDown className="w-4 h-4 text-gray-600" />}
         </div>
       </div>
       {expanded && hasActivity && (
-        <div className="px-4 pb-4 border-t border-gray-700/50 pt-3 bg-gray-900/30">
+        <div className="px-3 pb-3 border-t border-gray-700/50 pt-3 bg-gray-900/30">
           <div className="grid grid-cols-2 gap-4 text-xs">
             <div className="space-y-1.5">
               <DetailLine label="Lucros brutos" value={formatBRL(record.profits)} positive />
               <DetailLine label="Perdas" value={formatBRL(record.losses)} />
-              <DetailLine label="Perda acumulada anterior" value={formatBRL(record.lossCarryover > 0 ? record.lossCarryover : 0)} />
-              <DetailLine label="Base de cÃ¡lculo" value={formatBRL(record.taxBase)} />
-            </div>
-            <div className="space-y-1.5">
-              <DetailLine label="AlÃ­quota efetiva" value={`${(record.effectiveRate * 100).toFixed(2)}%`} />
+              <DetailLine label="Base de cálculo" value={formatBRL(record.taxBase)} />
               <DetailLine label="IR devido" value={formatBRL(record.taxDue)} highlight />
-              {record.lossCarryover > 0 && (
-                <DetailLine label="Perda p/ mÃªs seguinte" value={formatBRL(record.lossCarryover)} />
-              )}
-              <div className="mt-2 p-2 bg-blue-900/20 rounded text-blue-300 text-xs">
-                AlÃ­quotas: 15% â‰¤R$5M Â· 17,5% â‰¤R$10M Â· 20% â‰¤R$30M Â· 22,5% &gt;R$30M
-              </div>
+            </div>
+            <div className="p-2 bg-blue-900/20 rounded text-blue-300 text-xs space-y-0.5">
+              <p className="font-semibold mb-1">Alíquotas progressivas:</p>
+              <p>15% → até R$ 5M</p>
+              <p>17,5% → R$ 5M–10M</p>
+              <p>20% → R$ 10M–30M</p>
+              <p>22,5% → acima de R$ 30M</p>
             </div>
           </div>
         </div>
@@ -295,7 +287,7 @@ function ForexRow({ record, onExport }: { record: MonthlyForexRecord; onExport: 
   )
 }
 
-// â”€â”€â”€ MESA SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── MESA SECTION ──────────────────────────────────────────────────────────────
 function MesaSection({
   year, payouts, records, onAdd, onDelete,
 }: {
@@ -330,27 +322,27 @@ function MesaSection({
   const totalToPay = records.reduce((s, r) => s + r.taxToPay, 0)
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
         <div className="flex gap-4 text-sm">
-          <span className="text-gray-400">Repasse total: <span className="text-white font-mono">{formatBRL(totalGross)}</span></span>
-          <span className="text-gray-400">IR a pagar: <span className="text-red-400 font-mono">{formatBRL(totalToPay)}</span></span>
+          <span className="text-gray-400">Repasse: <span className="text-white font-mono">{formatBRL(totalGross)}</span></span>
+          <span className="text-gray-400">IR: <span className="text-red-400 font-mono">{formatBRL(totalToPay)}</span></span>
         </div>
         <Button size="sm" className="bg-purple-600 hover:bg-purple-700" onClick={() => setOpen(true)}>
-          <Plus className="w-4 h-4 mr-1" />
-          LanÃ§ar Repasse
+          <Plus className="w-4 h-4 sm:mr-1" />
+          <span className="hidden sm:inline">Lançar Repasse</span>
         </Button>
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="bg-gray-800 border-gray-700 text-white">
+        <DialogContent className="bg-gray-800 border-gray-700 text-white mx-4">
           <DialogHeader>
-            <DialogTitle>Repasse da Mesa â€” {year}</DialogTitle>
+            <DialogTitle>Repasse da Mesa — {year}</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label className="text-gray-300 text-xs">MÃªs</Label>
+                <Label className="text-gray-300 text-xs">Mês</Label>
                 <Select value={form.month} onValueChange={(v) => setForm({ ...form, month: v ?? form.month })}>
                   <SelectTrigger className="bg-gray-700 border-gray-600 text-white mt-1">
                     <SelectValue />
@@ -363,22 +355,22 @@ function MesaSection({
                 </Select>
               </div>
               <div>
-                <Label className="text-gray-300 text-xs">Valor Bruto Recebido (R$)</Label>
+                <Label className="text-gray-300 text-xs">Valor Bruto (R$)</Label>
                 <Input type="number" step="0.01" placeholder="5000.00" value={form.grossAmount}
                   onChange={(e) => setForm({ ...form, grossAmount: e.target.value })}
                   className="bg-gray-700 border-gray-600 text-white mt-1" required />
               </div>
             </div>
             <div>
-              <Label className="text-gray-300 text-xs">IR Retido na Fonte pela Mesa (R$)</Label>
+              <Label className="text-gray-300 text-xs">IR Retido na Fonte (R$)</Label>
               <Input type="number" step="0.01" placeholder="0.00" value={form.taxWithheld}
                 onChange={(e) => setForm({ ...form, taxWithheld: e.target.value })}
                 className="bg-gray-700 border-gray-600 text-white mt-1" />
-              <p className="text-gray-500 text-xs mt-1">Deixe 0 se a mesa nÃ£o retÃ©m IR.</p>
+              <p className="text-gray-500 text-xs mt-1">Deixe 0 se a mesa não retém IR.</p>
             </div>
             <div>
-              <Label className="text-gray-300 text-xs">DescriÃ§Ã£o</Label>
-              <Input placeholder="Repasse quinzenal, bÃ´nus..." value={form.description}
+              <Label className="text-gray-300 text-xs">Descrição</Label>
+              <Input placeholder="Repasse quinzenal, bônus..." value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 className="bg-gray-700 border-gray-600 text-white mt-1" />
             </div>
@@ -391,8 +383,8 @@ function MesaSection({
       </Dialog>
 
       <Card className="bg-gray-800/50 border-gray-700">
-        <CardHeader>
-          <CardTitle className="text-sm text-gray-300">ApuraÃ§Ã£o Mensal Mesa â€” {year}</CardTitle>
+        <CardHeader className="pb-2 pt-4">
+          <CardTitle className="text-sm text-gray-300">Apuração Mensal Mesa — {year}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
           {records.map((r) => (
@@ -424,64 +416,56 @@ function MesaRow({
   return (
     <div className="rounded-lg border border-gray-700/50 overflow-hidden">
       <div
-        className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-700/30 transition-colors"
+        className="flex items-center gap-2 px-3 py-2.5 cursor-pointer hover:bg-gray-700/30 transition-colors"
         onClick={() => setExpanded(!expanded)}
       >
-        <span className="text-white font-medium w-24 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
-        <div className="flex-1 flex items-center gap-4 text-xs">
-          <span className="text-gray-400">
+        <span className="text-white font-medium w-20 text-sm shrink-0">{MONTHS[record.month - 1]}</span>
+        <div className="flex-1 text-xs">
+          <span className="text-gray-400 hidden sm:inline">
             Repasse: <span className="text-white">{formatBRL(record.grossAmount)}</span>
           </span>
-          <span className="text-gray-400">
-            IR calculado: <span className="text-amber-400">{formatBRL(record.taxDue)}</span>
-          </span>
-          {record.taxWithheld > 0 && (
-            <span className="text-gray-400">
-              Retido: <span className="text-gray-300">{formatBRL(record.taxWithheld)}</span>
-            </span>
-          )}
         </div>
         <div className="flex items-center gap-2 shrink-0">
           {record.taxToPay > 0 ? (
-            <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/50">
-              A pagar: {formatBRL(record.taxToPay)}
+            <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/50 text-xs">
+              {formatBRL(record.taxToPay)}
             </Badge>
           ) : hasActivity ? (
-            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50">Quitado</Badge>
+            <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/50 text-xs">Quitado</Badge>
           ) : (
-            <Badge variant="outline" className="text-gray-600 border-gray-700">Sem repasse</Badge>
+            <Badge variant="outline" className="text-gray-600 border-gray-700 text-xs">Sem repasse</Badge>
           )}
           {record.taxToPay > 0 && (
             <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); onExport() }}
-              className="h-7 text-xs border-gray-600 text-gray-300">
-              <Download className="w-3 h-3 mr-1" />DARF 0190
+              className="h-6 text-xs border-gray-600 text-gray-300 px-2">
+              <Download className="w-3 h-3 mr-1" />0190
             </Button>
           )}
           {expanded ? <ChevronUp className="w-4 h-4 text-gray-600" /> : <ChevronDown className="w-4 h-4 text-gray-600" />}
         </div>
       </div>
       {expanded && (
-        <div className="px-4 pb-4 border-t border-gray-700/50 pt-3 bg-gray-900/30 space-y-3">
+        <div className="px-3 pb-3 border-t border-gray-700/50 pt-3 bg-gray-900/30 space-y-3">
           <div className="grid grid-cols-2 gap-4 text-xs">
             <div className="space-y-1.5">
               <DetailLine label="Rendimento bruto" value={formatBRL(record.grossAmount)} positive />
               <DetailLine label="IR tabela progressiva" value={formatBRL(record.taxDue)} />
               <DetailLine label="IR retido na fonte" value={formatBRL(record.taxWithheld)} />
-              <DetailLine label="AlÃ­quota efetiva" value={`${(record.effectiveRate * 100).toFixed(2)}%`} />
+              <DetailLine label="Alíquota efetiva" value={`${(record.effectiveRate * 100).toFixed(2)}%`} />
               <DetailLine label="IR a recolher (DARF 0190)" value={formatBRL(record.taxToPay)} highlight />
             </div>
-            <div className="space-y-1 p-2 bg-purple-900/20 rounded text-purple-300 text-xs">
-              <p className="font-semibold">Tabela CarnÃª-LeÃ£o 2024:</p>
-              <p>Isento: atÃ© R$ 2.824,00</p>
-              <p>7,5%: R$ 2.824 â€“ R$ 3.751</p>
-              <p>15%: R$ 3.751 â€“ R$ 4.664</p>
-              <p>22,5%: R$ 4.664 â€“ R$ 5.903</p>
-              <p>27,5%: acima de R$ 5.903</p>
+            <div className="p-2 bg-purple-900/20 rounded text-purple-300 text-xs space-y-0.5">
+              <p className="font-semibold mb-1">Carnê-Leão 2024:</p>
+              <p>Isento → até R$ 2.824</p>
+              <p>7,5% → R$ 2.824–3.751</p>
+              <p>15% → R$ 3.751–4.664</p>
+              <p>22,5% → R$ 4.664–5.903</p>
+              <p>27,5% → acima de R$ 5.903</p>
             </div>
           </div>
           {payouts.length > 0 && (
-            <div className="space-y-1.5 border-t border-gray-700/50 pt-3">
-              <p className="text-gray-400 text-xs font-medium">LanÃ§amentos do mÃªs:</p>
+            <div className="space-y-1.5 border-t border-gray-700/50 pt-2">
+              <p className="text-gray-400 text-xs font-medium">Lançamentos:</p>
               {payouts.map((p) => (
                 <div key={p.id} className="flex items-center justify-between text-xs">
                   <span className="text-gray-300">{p.description || "Repasse"}</span>
@@ -502,7 +486,7 @@ function MesaRow({
   )
 }
 
-// â”€â”€â”€ HELPERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── HELPERS ───────────────────────────────────────────────────────────────────
 function TaxSection({ title, profits, losses, taxBase, taxDue, carryover, exemption }: {
   title: string; profits: number; losses: number; taxBase: number; taxDue: number; carryover: number; exemption?: number
 }) {
@@ -511,9 +495,9 @@ function TaxSection({ title, profits, losses, taxBase, taxDue, carryover, exempt
       <p className="text-gray-300 text-xs font-semibold">{title}</p>
       <DetailLine label="Lucros" value={formatBRL(profits)} positive />
       <DetailLine label="Perdas" value={formatBRL(losses)} />
-      {exemption !== undefined && <DetailLine label="IsenÃ§Ã£o" value={formatBRL(exemption)} />}
-      <DetailLine label="Base de cÃ¡lculo" value={formatBRL(taxBase)} />
-      {carryover > 0 && <DetailLine label="Perda â†’ prÃ³x. mÃªs" value={formatBRL(carryover)} />}
+      {exemption !== undefined && <DetailLine label="Isenção" value={formatBRL(exemption)} />}
+      <DetailLine label="Base de cálculo" value={formatBRL(taxBase)} />
+      {carryover > 0 && <DetailLine label="Perda → próx. mês" value={formatBRL(carryover)} />}
       <div className="pt-1 border-t border-gray-700/50">
         <DetailLine label="IR devido" value={formatBRL(taxDue)} highlight />
       </div>
@@ -524,9 +508,7 @@ function TaxSection({ title, profits, losses, taxBase, taxDue, carryover, exempt
 function DetailLine({ label, value, positive, highlight }: {
   label: string; value: string; positive?: boolean; highlight?: boolean
 }) {
-  const color = highlight
-    ? "text-red-400 font-bold"
-    : positive ? "text-emerald-400" : "text-gray-200"
+  const color = highlight ? "text-red-400 font-bold" : positive ? "text-emerald-400" : "text-gray-200"
   return (
     <div className="flex justify-between text-xs">
       <span className="text-gray-400">{label}</span>
@@ -541,9 +523,9 @@ function SummaryCard({ label, value, color }: { label: string; value: string; co
   }
   return (
     <Card className="bg-gray-800/50 border-gray-700">
-      <CardContent className="pt-5">
+      <CardContent className="pt-4 pb-3">
         <p className="text-gray-400 text-xs mb-1">{label}</p>
-        <p className={`text-xl font-bold ${colors[color] ?? "text-white"}`}>{value}</p>
+        <p className={`text-base lg:text-xl font-bold ${colors[color] ?? "text-white"}`}>{value}</p>
       </CardContent>
     </Card>
   )
@@ -556,14 +538,14 @@ function InfoBox({ children, color }: { children: React.ReactNode; color: "blue"
     gray: "bg-gray-800/80 border-gray-700 text-gray-400",
   }
   return (
-    <div className={`rounded-lg border p-3 flex gap-2 text-sm ${styles[color]}`}>
+    <div className={`rounded-lg border p-3 flex gap-2 text-xs lg:text-sm ${styles[color]}`}>
       <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
       <div>{children}</div>
     </div>
   )
 }
 
-// â”€â”€â”€ BUILDERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── BUILDERS ──────────────────────────────────────────────────────────────────
 function buildRVRecords(trades: import("@/lib/types").Trade[], year: number): MonthlyTaxRecord[] {
   const records: MonthlyTaxRecord[] = []
   let dayCarry = 0, swingCarry = 0
@@ -591,46 +573,46 @@ function buildMesaRecords(payouts: MesaPayout[], year: number): MonthlyMesaRecor
   return Array.from({ length: 12 }, (_, i) => calcMonthlyMesa(payouts, year, i + 1))
 }
 
-// â”€â”€â”€ DARF EXPORTERS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── DARF EXPORTERS ────────────────────────────────────────────────────────────
 function exportDARF_RV(r: MonthlyTaxRecord) {
   const lines = [
-    `DARF â€” Renda VariÃ¡vel  |  CÃ³digo 6015`,
-    `PerÃ­odo: ${MONTHS[r.month - 1]}/${r.year}`,
+    `DARF — Renda Variável  |  Código 6015`,
+    `Período: ${MONTHS[r.month - 1]}/${r.year}`,
     ``,
     `Day Trade (20%): ${formatBRL(r.dayTaxDue)}`,
     `Swing Trade (15%): ${formatBRL(r.swingTaxDue)}`,
     `Total: ${formatBRL(r.totalTaxDue)}`,
-    `Vencimento: Ãºltimo dia Ãºtil de ${MONTHS[r.month % 12]}`,
+    `Vencimento: último dia útil de ${MONTHS[r.month % 12]}`,
   ]
   downloadTxt(lines.join("\n"), `DARF_RV_${MONTHS[r.month - 1]}_${r.year}.txt`)
 }
 
 function exportDARF_Forex(r: MonthlyForexRecord) {
   const lines = [
-    `DARF â€” Ganho de Capital Forex  |  CÃ³digo 4600`,
-    `PerÃ­odo: ${MONTHS[r.month - 1]}/${r.year}`,
+    `DARF — Ganho de Capital Forex  |  Código 4600`,
+    `Período: ${MONTHS[r.month - 1]}/${r.year}`,
     ``,
     `Lucros: ${formatBRL(r.profits)}`,
     `Perdas: ${formatBRL(r.losses)}`,
-    `Base de cÃ¡lculo: ${formatBRL(r.taxBase)}`,
-    `AlÃ­quota efetiva: ${(r.effectiveRate * 100).toFixed(2)}%`,
+    `Base de cálculo: ${formatBRL(r.taxBase)}`,
+    `Alíquota efetiva: ${(r.effectiveRate * 100).toFixed(2)}%`,
     `IR devido: ${formatBRL(r.taxDue)}`,
-    `Vencimento: Ãºltimo dia Ãºtil de ${MONTHS[r.month % 12]}`,
+    `Vencimento: último dia útil de ${MONTHS[r.month % 12]}`,
   ]
   downloadTxt(lines.join("\n"), `DARF_Forex_${MONTHS[r.month - 1]}_${r.year}.txt`)
 }
 
 function exportDARF_Mesa(r: MonthlyMesaRecord) {
   const lines = [
-    `DARF â€” Mesa ProprietÃ¡ria (CarnÃª-LeÃ£o)  |  CÃ³digo 0190`,
-    `PerÃ­odo: ${MONTHS[r.month - 1]}/${r.year}`,
+    `DARF — Mesa Proprietária (Carnê-Leão)  |  Código 0190`,
+    `Período: ${MONTHS[r.month - 1]}/${r.year}`,
     ``,
     `Rendimento bruto: ${formatBRL(r.grossAmount)}`,
     `IR tabela progressiva: ${formatBRL(r.taxDue)}`,
     `IR retido na fonte: ${formatBRL(r.taxWithheld)}`,
-    `AlÃ­quota efetiva: ${(r.effectiveRate * 100).toFixed(2)}%`,
+    `Alíquota efetiva: ${(r.effectiveRate * 100).toFixed(2)}%`,
     `IR a recolher: ${formatBRL(r.taxToPay)}`,
-    `Vencimento: Ãºltimo dia Ãºtil de ${MONTHS[r.month % 12]}`,
+    `Vencimento: último dia útil de ${MONTHS[r.month % 12]}`,
   ]
   downloadTxt(lines.join("\n"), `DARF_Mesa_${MONTHS[r.month - 1]}_${r.year}.txt`)
 }
