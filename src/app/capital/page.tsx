@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
 import {
   Select,
   SelectContent,
@@ -64,97 +63,98 @@ export default function CapitalPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 lg:p-6 space-y-4 lg:space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white">Controle de Capital</h1>
-          <p className="text-gray-400 text-sm">Gerencie depósitos, retiradas e acompanhe seu patrimônio</p>
+          <h1 className="text-xl lg:text-2xl font-bold text-white">Controle de Capital</h1>
+          <p className="text-gray-400 text-xs lg:text-sm">Gerencie depósitos, retiradas e acompanhe seu patrimônio</p>
         </div>
         <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700" onClick={() => setOpen(true)}>
-          <Plus className="w-4 h-4 mr-1" />
-          Movimentação
+          <Plus className="w-4 h-4 sm:mr-1" />
+          <span className="hidden sm:inline">Movimentação</span>
         </Button>
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogContent className="bg-gray-800 border-gray-700 text-white">
-            <DialogHeader>
-              <DialogTitle>Nova Movimentação</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <Label className="text-gray-300 text-xs">Data</Label>
-                  <Input
-                    type="date"
-                    value={form.date}
-                    onChange={(e) => setForm({ ...form, date: e.target.value })}
-                    className="bg-gray-700 border-gray-600 text-white mt-1"
-                    required
-                  />
-                </div>
-                <div>
-                  <Label className="text-gray-300 text-xs">Tipo</Label>
-                  <Select value={form.type} onValueChange={(v) => setForm({ ...form, type: v as "deposito" | "retirada" })}>
-                    <SelectTrigger className="bg-gray-700 border-gray-600 text-white mt-1">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-700 border-gray-600">
-                      <SelectItem value="deposito">Depósito</SelectItem>
-                      <SelectItem value="retirada">Retirada</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+      </div>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="bg-gray-800 border-gray-700 text-white mx-4">
+          <DialogHeader>
+            <DialogTitle>Nova Movimentação</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <Label className="text-gray-300 text-xs">Valor (R$)</Label>
+                <Label className="text-gray-300 text-xs">Data</Label>
                 <Input
-                  type="number"
-                  step="0.01"
-                  placeholder="1000.00"
-                  value={form.amount}
-                  onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm({ ...form, date: e.target.value })}
                   className="bg-gray-700 border-gray-600 text-white mt-1"
                   required
                 />
               </div>
               <div>
-                <Label className="text-gray-300 text-xs">Descrição</Label>
-                <Input
-                  placeholder="Aporte mensal, retirada para despesas..."
-                  value={form.description}
-                  onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="bg-gray-700 border-gray-600 text-white mt-1"
-                />
+                <Label className="text-gray-300 text-xs">Tipo</Label>
+                <Select value={form.type} onValueChange={(v) => setForm({ ...form, type: v as "deposito" | "retirada" })}>
+                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white mt-1">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-700 border-gray-600">
+                    <SelectItem value="deposito">Depósito</SelectItem>
+                    <SelectItem value="retirada">Retirada</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="flex gap-2 justify-end">
-                <Button type="button" variant="outline" onClick={() => setOpen(false)} className="border-gray-600 text-gray-300">
-                  Cancelar
-                </Button>
-                <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
-                  Salvar
-                </Button>
-              </div>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </div>
+            </div>
+            <div>
+              <Label className="text-gray-300 text-xs">Valor (R$)</Label>
+              <Input
+                type="number"
+                step="0.01"
+                placeholder="1000.00"
+                value={form.amount}
+                onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white mt-1"
+                required
+              />
+            </div>
+            <div>
+              <Label className="text-gray-300 text-xs">Descrição</Label>
+              <Input
+                placeholder="Aporte mensal, retirada para despesas..."
+                value={form.description}
+                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                className="bg-gray-700 border-gray-600 text-white mt-1"
+              />
+            </div>
+            <div className="flex gap-2 justify-end">
+              <Button type="button" variant="outline" onClick={() => setOpen(false)} className="border-gray-600 text-gray-300">
+                Cancelar
+              </Button>
+              <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">
+                Salvar
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardContent className="pt-5">
-            <div className="flex items-center justify-between mb-2">
+          <CardContent className="pt-4 pb-3">
+            <div className="flex items-center justify-between mb-1">
               <span className="text-gray-400 text-xs">Capital Atual</span>
               <Wallet className="w-4 h-4 text-emerald-400" />
             </div>
-            <p className="text-xl font-bold text-emerald-400">{formatBRL(currentCapital)}</p>
-            <p className="text-gray-500 text-xs mt-1">
+            <p className="text-lg font-bold text-emerald-400">{formatBRL(currentCapital)}</p>
+            <p className="text-gray-500 text-xs mt-0.5">
               {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}% retorno
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardContent className="pt-5">
-            <div className="flex items-center justify-between mb-2">
+          <CardContent className="pt-4 pb-3">
+            <div className="flex items-center justify-between mb-1">
               <span className="text-gray-400 text-xs">Capital Inicial</span>
               <button
                 onClick={() => { setCapitalInput(initialCapital.toString()); setEditingCapital(true) }}
@@ -175,38 +175,38 @@ export default function CapitalPage() {
                 <Button size="sm" onClick={handleSaveCapital} className="h-8 bg-emerald-600">OK</Button>
               </div>
             ) : (
-              <p className="text-xl font-bold text-white">{formatBRL(initialCapital)}</p>
+              <p className="text-lg font-bold text-white">{formatBRL(initialCapital)}</p>
             )}
           </CardContent>
         </Card>
 
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardContent className="pt-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-400 text-xs">Total Depositado</span>
+          <CardContent className="pt-4 pb-3">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-gray-400 text-xs">Depositado</span>
               <ArrowUpRight className="w-4 h-4 text-blue-400" />
             </div>
-            <p className="text-xl font-bold text-blue-400">{formatBRL(deposits)}</p>
+            <p className="text-lg font-bold text-blue-400">{formatBRL(deposits)}</p>
           </CardContent>
         </Card>
 
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardContent className="pt-5">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-400 text-xs">Total Retirado</span>
+          <CardContent className="pt-4 pb-3">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-gray-400 text-xs">Retirado</span>
               <ArrowDownLeft className="w-4 h-4 text-orange-400" />
             </div>
-            <p className="text-xl font-bold text-orange-400">{formatBRL(withdrawals)}</p>
+            <p className="text-lg font-bold text-orange-400">{formatBRL(withdrawals)}</p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardHeader>
+          <CardHeader className="pb-2 pt-4">
             <CardTitle className="text-sm text-gray-300">Resumo de Performance</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent className="space-y-2">
             <Row label="P&L de Trades" value={formatBRL(stats.totalPnL)} positive={stats.totalPnL >= 0} />
             <Row label="Capital Investido" value={formatBRL(totalInvested)} />
             <Row label="Retorno %" value={`${returnPct.toFixed(2)}%`} positive={returnPct >= 0} />
@@ -216,7 +216,7 @@ export default function CapitalPage() {
         </Card>
 
         <Card className="bg-gray-800/50 border-gray-700">
-          <CardHeader>
+          <CardHeader className="pb-2 pt-4">
             <CardTitle className="text-sm text-gray-300">Histórico de Movimentações</CardTitle>
           </CardHeader>
           <CardContent>
@@ -228,9 +228,9 @@ export default function CapitalPage() {
                   <div key={tx.id} className="flex items-center justify-between py-2 border-b border-gray-700/50 last:border-0">
                     <div className="flex items-center gap-2">
                       {tx.type === "deposito" ? (
-                        <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                        <TrendingUp className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       ) : (
-                        <TrendingDown className="w-3.5 h-3.5 text-orange-400" />
+                        <TrendingDown className="w-3.5 h-3.5 text-orange-400 shrink-0" />
                       )}
                       <div>
                         <p className="text-white text-sm">{tx.description || (tx.type === "deposito" ? "Depósito" : "Retirada")}</p>
