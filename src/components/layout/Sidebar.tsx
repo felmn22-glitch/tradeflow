@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, BookOpen, Wallet, Calculator, TrendingUp } from "lucide-react"
+import { LayoutDashboard, BookOpen, Wallet, Calculator } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const links = [
@@ -17,12 +18,15 @@ export function Sidebar() {
 
   return (
     <aside className="hidden lg:flex w-60 min-h-screen bg-gray-950 border-r border-gray-800 flex-col">
-      <div className="p-6 border-b border-gray-800">
-        <div className="flex items-center gap-2">
-          <TrendingUp className="w-6 h-6 text-emerald-400" />
-          <span className="text-white font-bold text-lg">TradeFlow</span>
-        </div>
-        <p className="text-gray-500 text-xs mt-1">Controle seu trading</p>
+      <div className="p-4 border-b border-gray-800">
+        <Image
+          src="/logo.png"
+          alt="TradeFlow"
+          width={180}
+          height={60}
+          className="w-full object-contain"
+          priority
+        />
       </div>
       <nav className="flex-1 p-4 space-y-1">
         {links.map(({ href, label, icon: Icon }) => (
